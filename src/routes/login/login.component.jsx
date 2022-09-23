@@ -10,7 +10,7 @@ const Login = () => {
     createUserDocument(user);
   }
 
-  // ! prepared to do my email / pass register and signins -> but how do I get form data if it isn't in state? 
+
 
   return (
     <div>
