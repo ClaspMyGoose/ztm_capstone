@@ -1,10 +1,13 @@
 import './sign-in-form.styles.scss';
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { googleSignIn, createUserDocument, logWithEmailPassword } from '../../utils/firebase/firebase.utils';
+import { UserContext } from '../../context/user.context';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 
 const SignInForm = () => {
+
+  const { setContext } = useContext(UserContext);
 
   const defaultFormFields = {
     email: '',
@@ -17,7 +20,8 @@ const SignInForm = () => {
   const logGoogleUser = async (e) => {
     e.preventDefault();
     const { user } = await googleSignIn();
-    createUserDocument(user);
+    await createUserDocument(user);
+    setContext(user);
   }
 
 
@@ -28,8 +32,9 @@ const SignInForm = () => {
     }
 
     try {
-      const userCred = await logWithEmailPassword(email, password);
-      console.log(userCred);
+      const { user } = await logWithEmailPassword(email, password);
+      setContext(user);
+      setFormFields(defaultFormFields);
     } catch(error) {
       switch(error.code) {
         case 'auth/wrong-password': 
