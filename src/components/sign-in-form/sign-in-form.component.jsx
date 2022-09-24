@@ -1,13 +1,10 @@
 import './sign-in-form.styles.scss';
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { googleSignIn, createUserDocument, logWithEmailPassword } from '../../utils/firebase/firebase.utils';
-import { UserContext } from '../../context/user.context';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 
 const SignInForm = () => {
-
-  const { setContext } = useContext(UserContext);
 
   const defaultFormFields = {
     email: '',
@@ -19,9 +16,13 @@ const SignInForm = () => {
 
   const logGoogleUser = async (e) => {
     e.preventDefault();
-    const { user } = await googleSignIn();
-    await createUserDocument(user);
-    setContext(user);
+
+    try {
+      const { user } = await googleSignIn();
+      await createUserDocument(user);
+    } catch(error) {
+      alert(error.code); 
+    }
   }
 
 
@@ -32,20 +33,19 @@ const SignInForm = () => {
     }
 
     try {
-      const { user } = await logWithEmailPassword(email, password);
-      setContext(user);
+      await logWithEmailPassword(email, password);
       setFormFields(defaultFormFields);
     } catch(error) {
-      switch(error.code) {
-        case 'auth/wrong-password': 
-          alert('Incorrect password');
-          break;
-        case 'auth/user-not-found':
-          alert('Email not found, please Sign Up!');
-          break;
-        default: 
-          console.log(error); 
-      }
+        switch(error.code) {
+          case 'auth/wrong-password': 
+            alert('Incorrect password');
+            break;
+          case 'auth/user-not-found':
+            alert('Email not found, please Sign Up!');
+            break;
+          default: 
+            console.log(error); 
+        }
     }
   }
 

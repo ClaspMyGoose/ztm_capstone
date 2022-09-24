@@ -1,6 +1,5 @@
 import './sign-up-form.styles.scss';
-import { useState, useContext } from 'react';
-import { UserContext } from '../../context/user.context';
+import { useState } from 'react';
 import { createUserDocument, registerWithEmailPassword } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
@@ -10,8 +9,6 @@ import Button from '../button/button.component';
 
 
 const SignUpForm = () => {
-
-  const { setCurrentUser } = useContext(UserContext); 
 
   const defaultFormFields = {
     displayName: '',
@@ -42,10 +39,18 @@ const SignUpForm = () => {
     try {
       const { user } = await registerWithEmailPassword(email, password);
       await createUserDocument(user, {name: displayName}); 
-      setCurrentUser(user);
       setFormFields(defaultFormFields);
     } catch(error) {
-      console.log('error creating user', error);
+      switch(error.code) {
+        case 'auth/weak-password': 
+          alert('Password must be 6 characters or more');
+          break;
+        case 'auth/email-already-in-use':
+          alert('Email already in use!');
+          break;
+        default: 
+          console.log('error creating user', error.code)
+      }
     }
   }
 
