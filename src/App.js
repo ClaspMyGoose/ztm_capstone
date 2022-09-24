@@ -2,12 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import NavigationBar from './routes/navigation/navigation.component';
 import Home from './routes/home/home.component';
 import Login from './routes/login/login.component';
+import Shop from './routes/shop/shop.component';
 
-const Shop = () => (
-  <div>
-    I am the shop
-  </div>
-)
 
 
 const App = () => {
