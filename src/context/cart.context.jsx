@@ -1,13 +1,21 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
-
+const itemAlreadyInCart = (productToAdd, cartItems) => {
+  for (let item of cartItems) {
+    if (item.id === productToAdd.id) {
+      item.qty += 1;
+      return [...cartItems];
+    }
+  }
+  return [...cartItems, {...productToAdd, qty: 1}]
+}
 
 export const CartContext = createContext({
-  cartQty: 0, 
   cartVisible: false,
   setCartVisible: () => {},
+  cartQty: 0,
   cartItems: [],
-  itemQty: null
+  addItemToCart: () => {}
 })
 
 
@@ -17,18 +25,24 @@ export const CartProvider = ({ children }) => {
   const [cartQty, setCartQty] = useState(0);
   const [cartVisible, setCartVisible] = useState(false);
   const [cartItems, setCartItems] = useState([]); 
-  const [itemQty, setItemQty] = useState(null); 
 
+
+  useEffect(() => {
+    setCartQty(() => cartItems.reduce((prevVal, currVal) => {
+      return prevVal += currVal.qty
+    }, 0));
+  }, [cartItems, setCartQty]); 
+
+  const addItemToCart = (productToAdd) => {
+    setCartItems(itemAlreadyInCart(productToAdd, cartItems)); 
+  }
 
   const value = {
     cartQty,
-    setCartQty,
     cartVisible, 
     setCartVisible,
     cartItems,
-    setCartItems,
-    itemQty,
-    setItemQty
+    addItemToCart
   }
 
   return (
