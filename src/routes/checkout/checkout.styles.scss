@@ -1,0 +1,31 @@
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  .checkout-line-titles {
+    width: 80%;
+    display: flex; 
+    justify-content: space-evenly;
+    border-bottom: 2px solid black;
+
+    div {
+      width: 15%;
+      display: flex;
+      justify-content: center;
+
+      .title {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .checkout-total {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+

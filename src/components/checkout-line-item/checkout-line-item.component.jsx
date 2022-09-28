@@ -28,15 +28,17 @@ const CheckoutLineItem = ({ item }) => {
 
   return (
     <div className="checkout-line-container">
-      <img src={imageUrl} alt={`${name}`} />
+      <div className='image-container'>
+        <img src={imageUrl} alt={`${name}`} />
+      </div>
+      <div className='name-container'><span>{name}</span></div>
       <div className="quantity-container">
         <span className='reduce' onClick={subQty}>&#60;</span>
         <span>{qty}</span>
         <span className='increase' onClick={addQty}>&#62;</span>
       </div>
-      <div className='name'><span>{name}</span></div>
-      <div className='price'><span>{price * qty}</span></div>
-      <div className='remove' onClick={removeItem}>X</div> 
+      <div className='price-container'><span>${price * qty}</span></div>
+      <div className='remove-container' onClick={removeItem}>X</div> 
     </div>
   );
 }

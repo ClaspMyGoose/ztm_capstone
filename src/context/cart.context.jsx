@@ -39,6 +39,7 @@ export const CartContext = createContext({
   cartVisible: false,
   setCartVisible: () => {},
   cartQty: 0,
+  cartTotal: 0,
   cartItems: [],
   addItemToCart: () => {},
   increaseQty: () => {},
@@ -51,6 +52,7 @@ export const CartContext = createContext({
 export const CartProvider = ({ children }) => {
 
   const [cartQty, setCartQty] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0); 
   const [cartVisible, setCartVisible] = useState(false);
   const [cartItems, setCartItems] = useState([]); 
 
@@ -58,7 +60,10 @@ export const CartProvider = ({ children }) => {
     setCartQty(() => cartItems.reduce((prevVal, currVal) => {
       return prevVal += currVal.qty
     }, 0));
-  }, [cartItems, setCartQty]); 
+    setCartTotal(() => cartItems.reduce((prevVal, currentVal) => {
+      return prevVal + (currentVal.qty * currentVal.price);
+    }, 0))
+  }, [cartItems, setCartQty, setCartTotal]); 
 
   // ! used in CartDropdown component 
   const addItemToCart = (productToAdd) => {
@@ -81,6 +86,7 @@ export const CartProvider = ({ children }) => {
 
   const value = {
     cartQty,
+    cartTotal,
     cartVisible, 
     setCartVisible,
     cartItems,
