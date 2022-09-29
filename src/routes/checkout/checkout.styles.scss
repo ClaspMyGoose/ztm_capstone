@@ -1,31 +1,31 @@
 .checkout-container {
+  width: 55%;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  margin: 50px auto 0;
 
+  .checkout-header {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgrey;
 
-  .checkout-line-titles {
-    width: 80%;
-    display: flex; 
-    justify-content: space-evenly;
-    border-bottom: 2px solid black;
+    .header-block {
+      text-transform: capitalize;
+      width: 23%;
 
-    div {
-      width: 15%;
-      display: flex;
-      justify-content: center;
-
-      .title {
-        font-size: 16px;
+      &:last-child {
+        width: 8%;
       }
     }
   }
 
-  .checkout-total {
-    width: 80%;
-    display: flex;
-    justify-content: flex-end;
+  .total {
+    margin-top: 30px;
+    margin-left: auto;
+    font-size: 36px;
   }
 }
-

@@ -60,10 +60,13 @@ export const CartProvider = ({ children }) => {
     setCartQty(() => cartItems.reduce((prevVal, currVal) => {
       return prevVal += currVal.qty
     }, 0));
+  }, [cartItems]); 
+
+  useEffect(() => {
     setCartTotal(() => cartItems.reduce((prevVal, currentVal) => {
       return prevVal + (currentVal.qty * currentVal.price);
     }, 0))
-  }, [cartItems, setCartQty, setCartTotal]); 
+  }, [cartItems]);
 
   // ! used in CartDropdown component 
   const addItemToCart = (productToAdd) => {

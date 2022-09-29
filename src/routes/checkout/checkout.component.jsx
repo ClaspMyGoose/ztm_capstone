@@ -20,21 +20,21 @@ const Checkout = () => {
 
   return(
     <div className="checkout-container">
-      <div className='checkout-line-titles'>
+      <div className='checkout-header'>
         <div>
-          <h2 className='title'>Product</h2>
+          <span className='header-block'>Product</span>
         </div>
         <div>
-          <h2 className='title'>Description</h2>
+          <span className='header-block'>Description</span>
         </div>
         <div>
-          <h2 className='title'>Quantity</h2>
+          <span className='header-block'>Quantity</span>
         </div>
         <div>
-          <h2 className='title'>Price</h2>
+          <span className='header-block'>Price</span>
         </div>
         <div>
-          <h2 className='title'>Remove</h2>
+          <span className='header-block'>Remove</span>
         </div>
       </div>
       {cartItems.map((item) => {
@@ -42,9 +42,7 @@ const Checkout = () => {
           <CheckoutLineItem key={item.id} item={item} />
           )
         })}
-      <div className='checkout-total'>
-        <span>Total: ${cartTotal}</span>
-      </div>
+      <span className='total'>Total: ${cartTotal}</span>
     </div>
     
   );
