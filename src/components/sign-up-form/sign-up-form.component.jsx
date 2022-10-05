@@ -1,5 +1,6 @@
 import './sign-up-form.styles.scss';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUserDocument, registerWithEmailPassword } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
@@ -9,6 +10,9 @@ import Button from '../button/button.component';
 
 
 const SignUpForm = () => {
+
+  const nav = useNavigate();
+  const navToHome = () => {nav('/')};
 
   const defaultFormFields = {
     displayName: '',
@@ -40,6 +44,7 @@ const SignUpForm = () => {
       const { user } = await registerWithEmailPassword(email, password);
       await createUserDocument(user, {name: displayName}); 
       setFormFields(defaultFormFields);
+      navToHome();
     } catch(error) {
       switch(error.code) {
         case 'auth/weak-password': 
