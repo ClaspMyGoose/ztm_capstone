@@ -1,9 +1,8 @@
-import './checkout.styles.scss'; 
 import { useContext, useEffect } from 'react';
 import { CartContext } from '../../context/cart.context';
 import CheckoutLineItem from '../../components/checkout-line-item/checkout-line-item.component';
 
-
+import { CheckoutContainer, CheckoutHeader, HeaderBlock, Total } from './checkout.styles';
 
  
 const Checkout = () => {
@@ -19,31 +18,31 @@ const Checkout = () => {
   useEffect(() => hideCartDropdownOnRender(), [])
 
   return(
-    <div className="checkout-container">
-      <div className='checkout-header'>
+    <CheckoutContainer>
+      <CheckoutHeader>
         <div>
-          <span className='header-block'>Product</span>
+          <HeaderBlock>Product</HeaderBlock>
         </div>
         <div>
-          <span className='header-block'>Description</span>
+          <HeaderBlock>Description</HeaderBlock>
         </div>
         <div>
-          <span className='header-block'>Quantity</span>
+          <HeaderBlock>Quantity</HeaderBlock>
         </div>
         <div>
-          <span className='header-block'>Price</span>
+          <HeaderBlock>Price</HeaderBlock>
         </div>
         <div>
-          <span className='header-block'>Remove</span>
+          <HeaderBlock className='remove'>Remove</HeaderBlock>
         </div>
-      </div>
+      </CheckoutHeader>
       {cartItems.map((item) => {
         return (
           <CheckoutLineItem key={item.id} item={item} />
           )
         })}
-      <span className='total'>Total: ${cartTotal}</span>
-    </div>
+      <Total>Total: ${cartTotal}</Total>
+    </CheckoutContainer>
     
   );
 

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { googleSignIn, createUserDocument, logWithEmailPassword } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/button.component';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
 const SignInForm = () => {
 
@@ -68,7 +68,7 @@ const SignInForm = () => {
         <FormInput label='Password' type='password' value={password} name='password' onChange={onChangeHandler} />
         <div className='buttons-container'>
           <Button type='submit'>Sign In</Button>
-          <Button onClick={logGoogleUser} type='button' buttonType='google'>Google Sign In</Button>
+          <Button onClick={logGoogleUser} type='button' buttonType={BUTTON_TYPE_CLASSES.google}>Google Sign In</Button>
         </div>
       </form>
     </div>
