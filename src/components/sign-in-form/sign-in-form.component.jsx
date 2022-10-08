@@ -1,4 +1,4 @@
-import './sign-in-form.styles.scss';
+import { SignInContainer, ButtonsContainer, FormTitle } from './sign-in-form.styles';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { googleSignIn, createUserDocument, logWithEmailPassword } from '../../utils/firebase/firebase.utils';
@@ -61,17 +61,17 @@ const SignInForm = () => {
   }
 
   return (
-    <div className="sign-in-container">
-      <h2>Already have an account?</h2>
+    <SignInContainer>
+      <FormTitle>Already have an account?</FormTitle>
       <form onSubmit={logInFunction}>
         <FormInput label='Email' type='email' value={email} name='email' onChange={onChangeHandler} />
         <FormInput label='Password' type='password' value={password} name='password' onChange={onChangeHandler} />
-        <div className='buttons-container'>
+        <ButtonsContainer>
           <Button type='submit'>Sign In</Button>
           <Button onClick={logGoogleUser} type='button' buttonType={BUTTON_TYPE_CLASSES.google}>Google Sign In</Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   )
 }
 

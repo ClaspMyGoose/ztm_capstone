@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import './category-item.styles.scss'; 
+import { CategoryItemContainer, BackgroundImage, CategoryBodyContainer, CategoryTitle, CTA } from './category-item.styles'; 
 
 
 const CategoryItem = ({ category }) => {
@@ -12,13 +12,13 @@ const CategoryItem = ({ category }) => {
   const navToCategoryPage = () => {nav(`/shop/${title.toLowerCase()}`)};
 
   return (
-  <div onClick={navToCategoryPage}  className="category-item-container">
-    <div className='background-image' style={{backgroundImage: `url(${imageUrl})`}} />
-    <div className="category-body-container">
-      <h2>{title}</h2>
-      <p>Shop Now</p>
-    </div>
-  </div>
+  <CategoryItemContainer onClick={navToCategoryPage}>
+    <BackgroundImage style={{backgroundImage: `url(${imageUrl})`}} />
+    <CategoryBodyContainer>
+      <CategoryTitle>{title}</CategoryTitle>
+      <CTA>Shop Now</CTA>
+    </CategoryBodyContainer>
+  </CategoryItemContainer>
 )}; 
 
 export default CategoryItem

@@ -1,4 +1,4 @@
-import './checkout-line-item.styles.scss';
+import { CheckoutItemContainer, ImageContainer, Image, Name, Quantity, Price, Value, Arrow, RemoveContainer } from './checkout-line-item.styles';
 import { useContext } from 'react';
 import { CartContext } from '../../context/cart.context';
 
@@ -27,23 +27,23 @@ const CheckoutLineItem = ({ item }) => {
 
 
   return (
-    <div className="checkout-item-container">
-      <div className='image-container'>
-        <img src={imageUrl} alt={`${name}`} />
-      </div>
-      <span className='name'>{name}</span>
-      <span className='quantity'>
-        <div className='arrow' onClick={subQty}>
+    <CheckoutItemContainer>
+      <ImageContainer>
+        <Image src={imageUrl} alt={`${name}`} />
+      </ImageContainer>
+      <Name>{name}</Name>
+      <Quantity>
+        <Arrow onClick={subQty}>
           &#10094;
-        </div>
-        <span className='value'>{qty}</span>
-        <div className='arrow' onClick={addQty}>
+        </Arrow>
+        <Value>{qty}</Value>
+        <Arrow onClick={addQty}>
           &#10095;
-        </div>
-      </span>
-      <span className='price'>${price * qty}</span>
-      <div className='remove-container' onClick={removeItem}>&#10005;</div> 
-    </div>
+        </Arrow>
+      </Quantity>
+      <Price>${price * qty}</Price>
+      <RemoveContainer onClick={removeItem}>&#10005;</RemoveContainer> 
+    </CheckoutItemContainer>
   );
 }
 

@@ -1,4 +1,4 @@
-import './sign-up-form.styles.scss';
+import { SignUpContainer, FormTitle } from './sign-up-form.styles';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserDocument, registerWithEmailPassword } from '../../utils/firebase/firebase.utils';
@@ -61,8 +61,8 @@ const SignUpForm = () => {
 
 
   return (
-  <div className="sign-up-container">
-    <h2>Don't have an account?</h2>
+  <SignUpContainer>
+    <FormTitle>Don't have an account?</FormTitle>
     <form onSubmit={createNewUser}>
       <FormInput label='Display Name' type="text" name="displayName" required value={displayName} onChange={handleChange} />
       <FormInput label='Email' type="email" name ="email" required value={email} onChange={handleChange} />
@@ -70,7 +70,7 @@ const SignUpForm = () => {
       <FormInput label='Confirm Password' type="password" name="passwordConfirm" required value={passwordConfirm} onChange={handleChange} />
       <Button type='submit'>Sign Up</Button>
     </form>
-  </div>
+  </SignUpContainer>
   )
   
 }
