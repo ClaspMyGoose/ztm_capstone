@@ -9,14 +9,20 @@ const Checkout = () => {
 
   const { cartItems, cartTotal, cartVisible, setCartVisible } = useContext(CartContext);
   
-  const hideCartDropdownOnRender = () => {
-    if (cartVisible) {
-      setCartVisible(!cartVisible)
-    }
-  }
+  // const hideCartDropdownOnRender = () => {
+  //   if (cartVisible) {
+  //     setCartVisible();
+  //   }
+  // }
 
-  useEffect(() => hideCartDropdownOnRender(), [])
+  // useEffect(() => {
+  //   console.log('Side Effect checking value here')
+  //   if(cartVisible) {
+  //     setCartVisible();
+  //   }
+  // }, [])
 
+  
   return(
     <CheckoutContainer>
       <CheckoutHeader>

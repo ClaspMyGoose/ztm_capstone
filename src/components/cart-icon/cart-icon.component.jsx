@@ -7,10 +7,10 @@ import { CartIconContainer, ShoppingIcon, ItemCount } from './cart-icon.styles';
 
 const CartIcon = () => {
 
-  const { cartVisible, setCartVisible, cartQty } = useContext(CartContext);
+  const { setCartVisible, cartQty } = useContext(CartContext);
   
   const toggleCartOverlay = () => {
-    setCartVisible(!cartVisible);
+    setCartVisible();
   }
 
   return(

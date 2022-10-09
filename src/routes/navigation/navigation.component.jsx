@@ -17,7 +17,7 @@ const NavigationBar = () => {
 
   const { currentUser } = useContext(UserContext);  
   const { cartVisible } = useContext(CartContext);
-
+  
   return (
     <Fragment>
       <NavigationContainer>
