@@ -7,20 +7,12 @@ import { CheckoutContainer, CheckoutHeader, HeaderBlock, Total } from './checkou
  
 const Checkout = () => {
 
-  const { cartItems, cartTotal, cartVisible, setCartVisible } = useContext(CartContext);
+  const { cartItems, cartTotal, setCartVisible } = useContext(CartContext);
   
-  // const hideCartDropdownOnRender = () => {
-  //   if (cartVisible) {
-  //     setCartVisible();
-  //   }
-  // }
 
-  // useEffect(() => {
-  //   console.log('Side Effect checking value here')
-  //   if(cartVisible) {
-  //     setCartVisible();
-  //   }
-  // }, [])
+  useEffect(() => {
+    setCartVisible();
+  }, [])
 
   
   return(
