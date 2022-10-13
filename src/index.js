@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/user.context';
 import { CategoryProvider } from './context/category.context';
 import { CartProvider } from './context/cart.context';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -13,15 +15,15 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
+    <Provider store={store}>
+      <BrowserRouter>
         <CategoryProvider>
           <CartProvider>
             <App />
           </CartProvider>
         </CategoryProvider>
-      </UserProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
