@@ -18,7 +18,6 @@ const Category = () => {
     if (categoryMap) {
       setCategoryItems(categoryMap[category])
     }
-    console.log(categoryMap);
   }, [categoryMap, category])
 
 
@@ -32,8 +31,6 @@ const Category = () => {
       </CategoryItems>
     </CategoryContainer>
   )
-
-
 }
 
 
