@@ -1,17 +1,23 @@
-import { useContext, useEffect } from 'react';
-import { CartContext } from '../../context/cart.context';
+import { useEffect } from 'react';
 import CheckoutLineItem from '../../components/checkout-line-item/checkout-line-item.component';
 
 import { CheckoutContainer, CheckoutHeader, HeaderBlock, Total } from './checkout.styles';
+import { useSelector, useDispatch } from 'react-redux';
+import { cartItemsSelector, cartTotalSelector } from '../../store/cart/cart.selector';
+import { toggleCartDropdownAction } from '../../store/cart/cart.action';
 
  
 const Checkout = () => {
+  
+  const dispatch = useDispatch();
 
-  const { cartItems, cartTotal, setCartVisible } = useContext(CartContext);
+  const cartItems = useSelector(cartItemsSelector); 
+  const cartTotal = useSelector(cartTotalSelector);
   
 
   useEffect(() => {
-    setCartVisible();
+    dispatch(toggleCartDropdownAction());
+    // eslint-disable-next-line
   }, [])
 
   

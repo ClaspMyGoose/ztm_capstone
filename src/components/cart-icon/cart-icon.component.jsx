@@ -1,5 +1,7 @@
-import { useContext } from 'react';
-import { CartContext } from '../../context/cart.context';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { cartQtySelector } from '../../store/cart/cart.selector';
+import { toggleCartDropdownAction } from '../../store/cart/cart.action'
 
 
 import { CartIconContainer, ShoppingIcon, ItemCount } from './cart-icon.styles'; 
@@ -7,10 +9,12 @@ import { CartIconContainer, ShoppingIcon, ItemCount } from './cart-icon.styles';
 
 const CartIcon = () => {
 
-  const { setCartVisible, cartQty } = useContext(CartContext);
+  const dispatch = useDispatch();
+
+  const cartQty = useSelector(cartQtySelector)
   
   const toggleCartOverlay = () => {
-    setCartVisible();
+    dispatch(toggleCartDropdownAction())
   }
 
   return(

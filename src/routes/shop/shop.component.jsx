@@ -18,6 +18,7 @@ const Shop = () => {
       dispatch(createCategoryAction(categoryArr))
     }
     fetchProducts();
+    // eslint-disable-next-line
   }, [])
 
 
