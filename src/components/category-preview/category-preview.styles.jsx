@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const CategoryPreviewContainer = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
 `
 export const Title = styled.span`

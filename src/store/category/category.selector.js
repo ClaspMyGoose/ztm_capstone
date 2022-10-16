@@ -14,6 +14,9 @@ const convertCategoryArrToMap = (array) => {
 const selectCategorySlice = (state) => state.category; 
 // memoize the categoryArr from our category slice, we only run the reduce conversion logic if this array changes
 // even though this selector will fire whenever any state changes 
+
+export const selectIsLoading = createSelector([selectCategorySlice], (categorySlice) => categorySlice.isLoading);
+
 const selectCategoryArr = createSelector([selectCategorySlice], (categorySlice) => categorySlice.categoryArray)
 
 
