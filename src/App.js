@@ -6,21 +6,18 @@ import Shop from './routes/shop/shop.component';
 import Checkout from './routes/checkout/checkout.component';
 
 import { useEffect } from 'react';
-import { onAuthStateChangedListener } from './utils/firebase/firebase.utils'; 
-import { setCurrentUser } from './store/user/user.action';
+
 import { useDispatch } from 'react-redux';
+import { checkUserSession } from './store/user/user.action';
+
 
 const App = () => {
 
   const dispatch = useDispatch();
 
+  // dispatching a checkUserSession() from user.action.js, which starts off our isUserAuthenticated saga 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((changeResult) => {
-      dispatch(setCurrentUser(changeResult)); 
-    })
-
-    return unsubscribe; 
-    // eslint-disable-next-line
+    dispatch(checkUserSession());
   }, [])
 
 

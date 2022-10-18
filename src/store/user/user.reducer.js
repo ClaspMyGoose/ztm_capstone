@@ -3,7 +3,9 @@ import { ACTION_TYPES } from "./user.types";
 
 
 const INITIAL_STATE = {
-  currentUser: null
+  currentUser: null,
+  isLoading: false, 
+  error: null
 }
 
 export const userReducer = (state = INITIAL_STATE, action = {}) => {
@@ -11,10 +13,17 @@ export const userReducer = (state = INITIAL_STATE, action = {}) => {
   const { type, payload } = action; 
 
   switch(type) {
-    case ACTION_TYPES.SET_CURRENT_USER:
+    case (ACTION_TYPES.SIGN_IN_SUCCESS):
       return {
         ...state,
-        currentUser: payload
+        currentUser: payload,
+        isLoading: false 
+      }
+    case (ACTION_TYPES.SIGN_IN_FAILED):
+      return {
+        ...state,
+        isLoading: false,
+        error: payload
       }
     default: 
       return state;
@@ -22,3 +31,8 @@ export const userReducer = (state = INITIAL_STATE, action = {}) => {
 }
 
 
+// CHECK_USER_SESSION: 'CHECK_USER_SESSION',
+//   GOOGLE_SIGN_IN_START: 'GOOGLE_SIGN_IN_START',
+//   EMAIL_SIGN_IN_START: 'EMAIL_SIGN_IN_START',
+//   SIGN_IN_SUCCESS: 'SIGN_IN_SUCCESS',
+//   SIGN_IN_FAILED: 'SIGN_IN_FAILED'
