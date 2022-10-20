@@ -1,6 +1,5 @@
 import { SignUpContainer, FormTitle } from './sign-up-form.styles';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import { useDispatch } from 'react-redux';
@@ -12,8 +11,6 @@ import { registerStart } from '../../store/user/user.action';
 
 const SignUpForm = () => {
 
-  const nav = useNavigate();
-  const navToHome = () => {nav('/')};
   const dispatch = useDispatch();
 
   const defaultFormFields = {
@@ -49,7 +46,6 @@ const SignUpForm = () => {
       dispatch(registerStart(email, password, displayName)); 
 
       setFormFields(defaultFormFields);
-      navToHome();
     } catch(error) {
       switch(error.code) {
         case 'auth/weak-password': 
