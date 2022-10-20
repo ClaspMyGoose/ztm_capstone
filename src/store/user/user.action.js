@@ -27,5 +27,21 @@ export const signInFailed = (error) => {
   return { type: ACTION_TYPES.SIGN_IN_FAILED, payload: error}
 }
 
+export const registerStart = (email, password, displayName) => {
+  return { type: ACTION_TYPES.REGISTER_WITH_EMAIL_START, payload: { email, password, displayName }}
+}
+
+export const logOutUserStart = () => {
+  return { type: ACTION_TYPES.LOG_OUT_START }
+}
+
+export const logOutFailed = (error) => {
+  return { type: ACTION_TYPES.LOG_OUT_FAILED, payload: error }
+}
+
+export const logOutSuccess = () => {
+  return { type: ACTION_TYPES.LOG_OUT_SUCCESS, payload: null }
+}
+
 
 

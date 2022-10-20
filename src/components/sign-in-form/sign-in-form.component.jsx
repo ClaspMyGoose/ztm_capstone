@@ -1,15 +1,16 @@
 import { SignInContainer, ButtonsContainer, FormTitle } from './sign-in-form.styles';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { googleSignIn, createUserDocument, logWithEmailPassword } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
+import { useDispatch } from 'react-redux';
+import { emailSignInStart, googleSignInStart } from '../../store/user/user.action';
 
 const SignInForm = () => {
 
   const nav = useNavigate();
   const navToHome = () => {nav('/')}
-
+  const dispatch = useDispatch();
 
   const defaultFormFields = {
     email: '',
@@ -23,9 +24,12 @@ const SignInForm = () => {
     e.preventDefault();
 
     try {
-      const { user } = await googleSignIn();
-      await createUserDocument(user);
+      // const { user } = await googleSignIn();
+      // await createUserDocument(user);
+      
+      dispatch(googleSignInStart()); 
       navToHome('/');
+      
     } catch(error) {
       alert(error.code); 
     }
@@ -39,7 +43,8 @@ const SignInForm = () => {
     }
 
     try {
-      await logWithEmailPassword(email, password);
+      // await logWithEmailPassword(email, password);
+      dispatch(emailSignInStart(email, password));
       setFormFields(defaultFormFields);
       navToHome('/');
     } catch(error) {
