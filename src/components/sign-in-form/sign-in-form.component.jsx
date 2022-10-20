@@ -3,11 +3,13 @@ import { useState } from 'react'
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { emailSignInStart, googleSignInStart } from '../../store/user/user.action';
 
 const SignInForm = () => {
 
   const dispatch = useDispatch();
+  const nav = useNavigate();
 
   const defaultFormFields = {
     email: '',
@@ -25,7 +27,7 @@ const SignInForm = () => {
       // await createUserDocument(user);
       
       dispatch(googleSignInStart()); 
-      
+      nav('/');
     } catch(error) {
       alert(error.code); 
     }
@@ -42,6 +44,7 @@ const SignInForm = () => {
       // await logWithEmailPassword(email, password);
       dispatch(emailSignInStart(email, password));
       setFormFields(defaultFormFields);
+      nav('/');
     } catch(error) {
         switch(error.code) {
           case 'auth/wrong-password': 
