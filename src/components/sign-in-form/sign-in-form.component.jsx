@@ -42,7 +42,6 @@ const SignInForm = () => {
       // await logWithEmailPassword(email, password);
       dispatch(emailSignInStart(email, password));
       setFormFields(defaultFormFields);
-      navToHome('/');
     } catch(error) {
         switch(error.code) {
           case 'auth/wrong-password': 
