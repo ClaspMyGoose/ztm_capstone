@@ -5,6 +5,7 @@ import { CheckoutContainer, CheckoutHeader, HeaderBlock, Total } from './checkou
 import { useSelector, useDispatch } from 'react-redux';
 import { cartItemsSelector, cartTotalSelector } from '../../store/cart/cart.selector';
 import { toggleCartDropdownAction } from '../../store/cart/cart.action';
+import PaymentForm from '../../components/payment-form/payment-form.component';
 
  
 const Checkout = () => {
@@ -46,6 +47,7 @@ const Checkout = () => {
           )
         })}
       <Total>Total: ${cartTotal}</Total>
+      <PaymentForm />
     </CheckoutContainer>
     
   );
