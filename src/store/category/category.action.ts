@@ -1,4 +1,4 @@
-import { ACTION_TYPES, ICategory } from "./category.types"
+import { ACTION_TYPES, ICategory, withMatcher } from "./category.types"
 
 
 interface ActionWithPayload<T, P> {
@@ -17,26 +17,28 @@ export type FetchCategorySuccess = ActionWithPayload<ACTION_TYPES.FETCH_CATEGORY
 
 export type FetchCategoryFailed = ActionWithPayload<ACTION_TYPES.FETCH_CATEGORY_FAILED, Error>;
 
-export type CategoryAction = FetchCategoryFailed | FetchCategoryStart | FetchCategorySuccess;
+export type CategoryAction = FetchCategoryFailed | FetchCategorySuccess | FetchCategoryStart;
 
-export const fetchCategoryStart = (): FetchCategoryStart => {
+
+
+export const fetchCategoryStart = withMatcher((): FetchCategoryStart => {
   return {
     type: ACTION_TYPES.FETCH_CATEGORY_START
   }
-}
+})
 
-export const fetchCategoryFailed = (error: Error): FetchCategoryFailed => {
+export const fetchCategoryFailed = withMatcher((error: Error): FetchCategoryFailed => {
   return {
     type: ACTION_TYPES.FETCH_CATEGORY_FAILED,
     payload: error
   }
-}
+})
 
-export const fetchCategorySuccess = (categoriesData: ICategory[]): FetchCategorySuccess => {
+export const fetchCategorySuccess = withMatcher((categoriesData: ICategory[]): FetchCategorySuccess => {
   return {
     type: ACTION_TYPES.FETCH_CATEGORY_SUCCESS,
     payload: categoriesData
   }
-}
+})
 
 
